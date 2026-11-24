@@ -1,0 +1,4 @@
+<?php
+namespace Tests\Feature;
+use Illuminate\Foundation\Testing\RefreshDatabase;use Tests\TestCase;
+class WorkspaceTest extends TestCase {use RefreshDatabase;public function test_guest_is_sent_to_sign_in():void{$this->get('/dashboard')->assertRedirect('/login');}public function test_registration_creates_user_and_signs_in():void{$this->post('/register',['name'=>'Demo User','email'=>'demo@example.test','password'=>'StrongPassword123','password_confirmation'=>'StrongPassword123'])->assertRedirect('/dashboard');$this->assertAuthenticated();}public function test_authenticated_user_can_open_dashboard():void{$user=\App\Models\User::create(['name'=>'Demo','email'=>'demo2@example.test','password'=>\Illuminate\Support\Facades\Hash::make('SecretPassword123')]);$this->actingAs($user)->get('/dashboard')->assertOk();}}
