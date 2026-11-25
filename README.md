@@ -20,7 +20,7 @@ touch database/database.sqlite
 php artisan migrate
 php artisan serve
 ```
-Open `/register` to create a demo user. Use fictional data only. This portfolio sample is not hardened for production use.
+Open `/register` to create a demo user. Clients and invoices are scoped to the signed-in user (run `php artisan migrate:fresh` if you set this up before the user_id columns were added). Use fictional data only. This portfolio sample is not hardened for production use.
 
 ## Tests
 ```bash
